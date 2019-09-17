@@ -1,0 +1,22 @@
+import win32com
+from win32com.client import Dispatch
+from win32com.client import GetObject
+import win32api
+import win32con
+import win32gui
+
+connection_description = '2. Global ERP [GFP]'
+sapo = GetObject("SAPGUI")
+app = sapo.GetScriptingEngine
+conn = app.OpenConnection(connection_description, True)
+session = conn.Children(0)
+session.findById("wnd[0]").maximize()
+session.findById("wnd[0]/usr/txtRSYST-BNAME").text = uid
+session.findById("wnd[0]/usr/pwdRSYST-BCODE").text = pwd
+session.findById("wnd[0]/usr/pwdRSYST-BCODE").setFocuse()
+session.findById("wnd[0]/usr/pwdRSYST-BCODE").caretPosition = 11
+session.findById("wnd[0]").sendVKey(0)
+
+
+
+
